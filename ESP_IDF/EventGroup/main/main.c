@@ -13,7 +13,7 @@ void task_wifi_conn(void * params){
 	while(pdTRUE){
 		ESP_LOGI("WIFI", "Connecting wifi...");
 		for(int i =0 ; i<10; i++){
-			printf(".");
+			ESP_LOGI("",".");
 			vTaskDelay(500/portTICK_PERIOD_MS);
 
 		}
@@ -32,15 +32,12 @@ void task_http_req(void * params){
 		ESP_LOGI("http_req","Reuesting at %s", url);
 		vTaskDelay(pdMS_TO_TICKS(1000));
 		ESP_LOGI("http_req","HTTP Reuest [200]");
-		printf("Request saved in buffer\n");
+		ESP_LOGI("http_response","Request saved in buffer");
 		vTaskDelay(pdMS_TO_TICKS(500));
 		ESP_LOGI("http_req","Reuesting Done", url);
 		xEventGroupSetBits(eventg_example, HTTP_REQ);
 		vTaskDelay(pdMS_TO_TICKS(500));
 		vTaskDelete(NULL);
-
-
-
 	}
 }
 void app_main(void)
